@@ -1,4 +1,6 @@
 from aoc_2025_02_input import testInput, solutionInput
+import time, math
+start_time = time.time()
 
 ##utility
 def dynamicInput(mode):
@@ -54,17 +56,18 @@ def solvePartTwo(list):
 
         while currentId <= rangeEnd:
             length = len(str(currentId))
-            splitBy = 1
-            while splitBy <= length/2:
+            splitBy = math.floor(length/2)
+            while splitBy >= 1:
                 #'length' is devisable by 'splitBy' amount
                 if length % splitBy == 0:
                     checkList = [str(currentId)[i:i+splitBy] for i in range(0, length, splitBy)]
                     #print(f"–––> {currentId}/{splitBy}: {checkList}")
-                    if allEqual(checkList) and currentId not in invalidIds: 
+                    if allEqual(checkList):
                         #print(f"invalid: {currentId}")
                         invalidIds.append(currentId)
+                        break
 
-                splitBy += 1
+                splitBy -= 1
 
             currentId += 1
 
@@ -74,6 +77,7 @@ def solvePartTwo(list):
 
 print(solvePartTwo(inputList))
 
-
+end_time = time.time()
+print(f"--- {end_time - start_time:.4f} seconds ---") 
 
 
