@@ -225,10 +225,8 @@ def solvePartTwoAttemptTwo(boxes):
         
         
         if clusterA_idx != clusterB_idx: #if they are not clusterd together
-            #merge 1 clsuter
-            clusters[clusterA_idx].extend(clusters[clusterB_idx])
-            # prune off the other
-            clusters.pop(clusterB_idx)
+            clusters[clusterA_idx].extend(clusters[clusterB_idx])#merge 1 clsuter
+            clusters.pop(clusterB_idx) #prune off the other
 
             # Stop conditional all connections made into one cluster print idA and idB's x values
             if len(clusters) == 1:
